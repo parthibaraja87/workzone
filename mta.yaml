@@ -1,0 +1,92 @@
+_schema-version: "3.2"
+ID: NHGDEMOAPP
+version: 0.0.1
+modules:
+- name: NHGDEMOAPP-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: NHGDEMOAPP-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comnhgui.zip
+      name: comnhgui
+      target-path: resources/
+- name: comnhgui
+  type: html5
+  path: ui
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: NHGDEMOAPP-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: NHGDEMOAPP-dest-srv
+    parameters:
+      content-target: true
+  - name: NHGDEMOAPP-repo-host
+    parameters:
+      service-key:
+        name: NHGDEMOAPP-repo-host-key
+  - name: uaa_NHGDEMOAPP
+    parameters:
+      service-key:
+        name: uaa_NHGDEMOAPP-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: nhg_NHGDEMOAPP_repo_host
+          ServiceInstanceName: NHGDEMOAPP-html5-srv
+          ServiceKeyName: NHGDEMOAPP-repo-host-key
+          sap.cloud.service: nhg
+        - Authentication: OAuth2UserTokenExchange
+          Name: nhg_uaa_NHGDEMOAPP
+          ServiceInstanceName: NHGDEMOAPP-xsuaa-service
+          ServiceKeyName: uaa_NHGDEMOAPP-key
+          sap.cloud.service: nhg
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+resources:
+- name: NHGDEMOAPP-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: NHGDEMOAPP-html5-srv
+    service-plan: app-host
+- name: NHGDEMOAPP-dest-srv
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: NHGDEMOAPP-dest-srv
+    service-plan: lite
+- name: uaa_NHGDEMOAPP
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: NHGDEMOAPP-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo
