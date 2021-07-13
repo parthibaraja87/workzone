@@ -1,17 +1,10 @@
-<mvc:View
-    controllerName="com.nhg.ui.controller.Main"
-    xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" 
-    displayBlock="true"
-    xmlns="sap.m" xmlns:form="sap.ui.layout.form"
-	xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
->
-	<Shell id="shell">
+<mvc:View controllerName="com.nhg.ui.controller.Main" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified">
+		<Shell id="shell">
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
-					
-                    <content>
-                    <Wizard id="eclaim" complete="wizardCompletHandler" height="auto" enableBranching="true">
+                <content>
+                    <Wizard id="eclaim" finishButtonText="Submit" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" complete="wizardCompletHandler" enableBranching="true">
 							<WizardStep id="firstStep" nextStep="secondStep" title="{i18n>eclaim}" validated="true" icon="sap-icon://request" complete="completeWiz"
 								activate="additinalInfoValidation">
 								<l:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L6 M6 S10">
@@ -60,27 +53,27 @@
 												 <Label text="{i18n>whattype}" design="Bold" required="true" class="wizardlabel sapUiSmallMarginTop"/>
 												<HBox width="auto" class="sapUiTinyMarginTopBottom">
 													
-													<RadioButtonGroup id="webradionbtn1" columns="5" class="objectlayoutheadertxt1">
-														<buttons>
+													<!-- <RadioButtonGroup id="webradionbtn1" columns="5" class="objectlayoutheadertxt1">
+														<buttons> -->
 															<RadioButton id="idOutpatient" text="{i18n>outpatient}" visible="true"/>
 															<RadioButton id="idSpecialist" text="{i18n>specialist}"/>
 															<RadioButton id="idDentel" text="{i18n>dentel}"/>
                                                             <RadioButton id="idInpatient" text="{i18n>inpatient}"/>
                                                             <RadioButton id="idTCM" text="{i18n>tcm}"/>
                                                        
-														</buttons>
-													</RadioButtonGroup>
+														<!-- </buttons>
+													</RadioButtonGroup> -->
 												</HBox>
                                                 <Label text="{i18n>or}"  class="wizardlabel sapUiSmallMarginTop"/>
-                                                 <RadioButton  text="{i18n>ytdclaim}"/>
+                                                 <RadioButton  id="idytdclaim" text="{i18n>ytdclaim}"/>
                                                 <Label text="{i18n>or}"  class="wizardlabel sapUiSmallMarginTop"/>
-												<RadioButton text="{i18n>claimhistory}"/>
+												<RadioButton id="idclaimhistory" text="{i18n>claimhistory}"/>
 											</VBox>
 										</form:SimpleForm>
 									</l:content>
 								</l:Grid>
 							</WizardStep>
-                            	<WizardStep id="idClinicTypeStep" nextStep="idEnterDetailsStep" title="{i18n>clinictype}" complete="completeWiz3" validated="true"
+                            	<WizardStep id="idClinicTypeStep" nextStep="idEnterDetailsStep1" title="{i18n>clinictype}" complete="completeWiz3" validated="true"
 								icon="sap-icon://vertical-bar-chart-2">
 								<l:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L6 M6 S10">
 									<l:content>
@@ -105,10 +98,10 @@
 								</l:Grid>
 							</WizardStep>
                             							
-                            	<WizardStep id="idEnterDetailsStep" title="{i18n>enterdetails}" complete="completeEnterDetailsStep" validated="true"
+                            	<WizardStep id="idEnterDetailsStep1" nextStep="idEnterDetailsStep2" title="{i18n>enterdetails1}" complete="completeWiz4"  validated="true"
 								icon="sap-icon://vertical-bar-chart-2">
-								<l:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L6 M6 S10">
-									<l:content>
+								<!-- <l:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L6 M6 S10">
+									<l:content> -->
 										<!-- <form:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="false" singleContainerFullSize="false" labelSpanXL="4"
 											labelSpanL="3" labelSpanM="4" labelSpanS="12" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1"
 											columnsM="1">
@@ -153,43 +146,86 @@
 												
                                             </VBox>
 										</form:SimpleForm> -->
-                                        <form:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="false" singleContainerFullSize="false" labelSpanXL="4"
-											labelSpanL="3" labelSpanM="4" labelSpanS="12" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1"
+                                        <form:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="false" singleContainerFullSize="false" labelSpanXL="2"
+											labelSpanL="2" labelSpanM="2" labelSpanS="12" emptySpanXL="0" emptySpanL="0" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1"
 											columnsM="1">
-											<VBox width="100%">
-                                          		 <Label text="{i18n>visitdate}"  required="true" class="wizardlabel sapUiSmallMarginEnd"/>
-                                                 <DatePicker width="40%" id="idVisitDate" valueFormat="yyyy-MM-dd" placeholder="Enter Start Date ..." required="true" change="DateSelect"/>
-                                          			<Label text="{i18n>providertype}" class="wizardlabel sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-													<Select width="40%" forceSelection="false" id="idProviderType" selectedKey="" change="ResourceSelect" items="{/avResourceNames}" showSecondaryValues="true">
-							
-														<core:ListItem key="{uid}" text="{resName}" additionalText="{uid} {ResourceLevel}"/>
+											<!-- <VBox width="100%"> -->
+                                          		    <Label text="{i18n>visitdate}"  required="true" class="wizardlabel sapUiSmallMarginEnd"/>
+                                                    <DatePicker width="40%" id="idVisitDate" value="{globalJSONModel>/visitDate}" valueFormat="yyyy-MM-dd" placeholder="Enter Start Date ..." required="true" change="DateSelect"/>
+                                          			<Label text="{i18n>providertype}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Select width="40%" forceSelection="false" id="idProviderType" selectedKey="{globalJSONModel>/providerType}" change="ResourceSelect">
+							                            <core:Item key="Health maintenance organizations" text="Health maintenance organizations" />
+														<core:Item key="Exclusive provider organizations" text="Exclusive provider organizations"/>
+														<core:Item key="Point-of-service Plans" text="Point-of-service Plans"/>
+														<core:Item key="Preferred provider organizations" text="Preferred provider organizations"/>
 													</Select>
-													<Label text="{i18n>clinicname}" class="wizardlabel sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-													<Input width="40%" type="Text" value="" placeholder="Enter only text value" id="idClinicName" required="true"/>
-													<Label text="{i18n>invoice}" class="wizardlabel sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-													<Input width="40%" type="Text" value="" placeholder="Enter only numeric value" id="idInvoice" required="true"/>
-													<Label text="{i18n>claimamount}" class="wizardlabel sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-													<Input width="40%" type="Number" placeholder="Enter the amount" id="idClaimAmount" required="true"/>
-													<Label text="{i18n>diagnosis}" class="wizardlabel sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-													<TextArea width="40%" placeholder="Enter the diagnosis (Max 5)" id="idDiagnosis" required="true"/>
-													<Label text="{i18n>attachment}" class="wizardlabel sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-													<u:FileUploader width="40%" id="idAttachment" name="myFileUpload"/>
-													<Label text="{i18n>remarks}" class="wizardlabel sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-													<TextArea width="40%" placeholder="Enter the Remarks" id="idRemarks" required="false"/>
+													<Label text="{i18n>clinicname}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Input width="40%" type="Text" value="{globalJSONModel>/clinicName}" placeholder="Enter only text value" id="idClinicName" required="true"/>
+													<Label text="{i18n>invoice}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Input width="40%" type="Text" value="{globalJSONModel>/invoiceNo}" placeholder="Enter only numeric value" id="idInvoice" required="true"/>
+													<Label text="{i18n>claimamount}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Input width="40%" type="Number" value="{globalJSONModel>/claimAmount}" placeholder="Enter the amount" id="idClaimAmount" required="true"/>
+													
 													
 											
 												
-                                            </VBox>
+                                            <!-- </VBox> -->
 										</form:SimpleForm>
 
-									</l:content>
-								</l:Grid>
+									<!-- </l:content>
+								</l:Grid> -->
+							</WizardStep>
+                            <WizardStep id="idEnterDetailsStep2" nextStep="idPreviewDetailsStep" title="{i18n>enterdetails2}" complete="completeWiz5" validated="true"
+								icon="sap-icon://vertical-bar-chart-2">
+								<!-- <l:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L6 M6 S10">
+									<l:content> -->
+                                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="false" singleContainerFullSize="false" labelSpanXL="2"
+											labelSpanL="2" labelSpanM="2" labelSpanS="12" emptySpanXL="0" emptySpanL="0" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1"
+											columnsM="1">
+                                            <Label text="{i18n>diagnosis}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<TextArea width="40%" value="{globalJSONModel>/diagnosis}" placeholder="Enter the diagnosis (Max 5)" id="idDiagnosis" required="true"/>
+													<Label text="{i18n>attachment}" class="wizardlabel sapUiSmallMarginEnd"/>
+    												<u:FileUploader width="40%" buttonText="{i18n>Browse}" change="handleUploadPress" id="idAttachment" name="myFileUpload" class="sapUiSmallMarginEnd"/>
+                                                    <Label text="{i18n>remarks}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<TextArea width="40%" value="{globalJSONModel>/remarks}" placeholder="Enter the Remarks" id="idRemarks" required="false"/>
+                                    </form:SimpleForm>
+                                    <!-- </l:content>
+								</l:Grid> -->
+							</WizardStep>
+                            <WizardStep id="idPreviewDetailsStep" title="{i18n>previewdetails}" complete="onSubmitClaim" validated="true"
+								icon="sap-icon://vertical-bar-chart-2">
+								<!-- <l:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L12 M12 S12">
+                                
+									<l:content> -->
+                                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="false" singleContainerFullSize="false" labelSpanXL="2"
+											labelSpanL="2" labelSpanM="2" labelSpanS="12" emptySpanXL="0" emptySpanL="0" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1"
+											columnsM="1">
+                                                    <Label text="{i18n>visitdate}"  class="wizardlabel sapUiSmallMarginEnd"/>
+                                                    <DatePicker width="40%" id="idVisitDateR" value="{globalJSONModel>/visitDate}" valueFormat="yyyy-MM-dd" editable="false"/>
+                                          			<Label text="{i18n>providertype}" class="wizardlabel sapUiSmallMarginEnd"/>
+												    <Input width="40%" type="Text" value="{globalJSONModel>/providerType}" editable="false" id="idProviderTypeR" required="true"/>
+												    <Label text="{i18n>clinicname}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Input width="40%" type="Text" value="{globalJSONModel>/clinicName}" editable="false" id="idClinicNameR" required="true"/>
+													<Label text="{i18n>invoice}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Input width="40%" type="Text" value="{globalJSONModel>/invoiceNo}" editable="false"  id="idInvoiceR" required="true"/>
+													<Label text="{i18n>claimamount}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Input width="40%" type="Number" value="{globalJSONModel>/claimAmount}" editable="false"  id="idClaimAmountR" required="true"/>
+													<Label text="{i18n>diagnosis}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<TextArea width="40%" editable="false" value="{globalJSONModel>/diagnosis}" id="idDiagnosisR" required="true"/>
+													<Label text="{i18n>attachment}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Input width="40%" editable="false" value="{globalJSONModel>/attachment}" id="idAttachmentR" name="myFileUpload"/>
+													<Label text="{i18n>remarks}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<TextArea width="40%" editable="false" value="{globalJSONModel>/remarks}" id="idRemarksR" required="false"/>
+													
+                                    </form:SimpleForm>
+                                    <!-- </l:content>
+								</l:Grid> -->
 							</WizardStep>
 						</Wizard>
 
                     </content>
 				</Page>
-			</pages>
+             </pages>
 		</App>
 	</Shell>
 </mvc:View>
