@@ -8,28 +8,27 @@ sap.ui.define([
 	 */
     function (Controller, MessageBox, JSONModel) {
         "use strict";
-                var globalJSONModel = new JSONModel();
-                var gloablObject = {
-                    visitDate: "",
-                    providerType: "",
-                    clinicName: "",
-                    invoiceNo: "",
-                    claimAmount: "",
-                    diagnosis: "",
-                    attachment: "",
-                    remarks: ""
-                };
+        var globalJSONModel = new JSONModel();
+        var gloablObject = {
+            visitDate: "",
+            providerType: "",
+            clinicName: "",
+            invoiceNo: "",
+            claimAmount: "",
+            diagnosis: "",
+            attachment: "",
+            remarks: ""
+        };
         return Controller.extend("com.nhg.ui.controller.Main", {
             onInit: function () {
                 globalJSONModel.setData(gloablObject);
-                this.getView().setModel(globalJSONModel,"globalJSONModel");
+                this.getView().setModel(globalJSONModel, "globalJSONModel");
                 this.i18nModel = this.getOwnerComponent().getModel("i18n");
             },
-            handleUploadPress:function(evt)
-            {
-                gloablObject.attachment=evt.getParameters().newValue;
+            handleUploadPress: function (evt) {
+                gloablObject.attachment = evt.getParameters().newValue;
                 globalJSONModel.setData(gloablObject);
-                this.getView().setModel(globalJSONModel,"globalJSONModel");
+                this.getView().setModel(globalJSONModel, "globalJSONModel");
             },
             completeEnterDetailsStep: function (evt) {
                 //alert(1)
@@ -38,7 +37,12 @@ sap.ui.define([
                 //this._oDialog.openBy(sSrc);
                 this._oDialog.open();
             },
-
+            onRadioChange1: function (evt) {
+                this.getView().byId("webradionbtn2").setSelectedIndex(-1);
+            },
+            onRadioChange2: function (evt) {
+                this.getView().byId("webradionbtn1").setSelectedIndex(-1);
+            },
             getReviewFragment: function () {
                 if (!this._oDialog) {
                     this._oDialog = sap.ui.xmlfragment(
@@ -50,7 +54,7 @@ sap.ui.define([
                 }
                 return this._oDialog;
             },
-            onSubmitClaim: function () {
+            onSubmit: function () {
                 this.getView().getModel("globalJSONModel").getData();
                 MessageBox.show(this.i18nModel.getProperty("successmsg"), {
                     title: this.i18nModel.getProperty("SUCCESS"),
@@ -59,6 +63,20 @@ sap.ui.define([
             },
             cancelClaim: function () {
                 this._oDialog.close();
+            },
+            onNext: function () {
+                var a = this.getView().byId("eclaim").getProgressStep().getNextStep();
+                if (a.indexOf("idPreviewDetailsStep") == -1) {
+                    this.getView().byId("eclaim").setCurrentStep(a);
+                }
+                else {
+                    this.getView().byId("eclaim").setCurrentStep(a);
+                    this.getView().byId("nextbutton").setVisible(false);
+                    this.getView().byId("submitbutton").setVisible(true);
+
+                }
+
+
             }
 
 
