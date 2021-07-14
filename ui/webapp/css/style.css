@@ -1,1 +1,4 @@
 /* Enter your custom styles here */
+.sapUiForm .sapUiFormTitle {
+display: contents !important;
+}
