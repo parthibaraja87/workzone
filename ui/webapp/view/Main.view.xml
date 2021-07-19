@@ -28,13 +28,8 @@
 													<Label text="{i18n>member}" required="true" class="wizardlabel"/>
                                                    <!-- </HBox> 
                                                 <HBox width="auto" class="sapUiTinyMarginTopBottom">     -->
-													<Select width="auto" forceSelection="false" change="" >
-														<core:Item key="Raja" text="Raja" />
-														<core:Item key="Rani" text="Rani"/>
-														<core:Item key="Suresh" text="Suresh"/>
-														<core:Item key="Ramesh" text="Ramesh"/>
-														<core:Item key="Ganesh" text="Ganesh"/>
-														
+                                                    <Select width="auto" class="inputWidth" forceSelection="false" items="{globalJSONModel>/employeeList}">
+							                            <core:Item key="{globalJSONModel>name}" text="{globalJSONModel>name}" />
 													</Select>
 												<!-- </HBox> -->
 											<!-- </VBox> -->
@@ -108,20 +103,19 @@
 											columnsM="1">
 											<!-- <VBox width="100%"> -->
                                           		    <Label text="{i18n>visitdate}"  required="true" class="wizardlabel sapUiSmallMarginEnd"/>
-                                                    <DatePicker class="inputWidth" width="auto" id="idVisitDate" value="{globalJSONModel>/visitDate}" valueFormat="yyyy-MM-dd" placeholder="Enter Start Date ..." required="true" change="DateSelect"/>
+                                                    <DatePicker class="inputWidth" width="auto" id="idVisitDate" value="{globalJSONModel>/steps/0/visitDate}" valueFormat="yyyy-MM-dd" placeholder="Enter Start Date ..." required="true" change="DateSelect"/>
                                           			<Label text="{i18n>providertype}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<Select width="auto" class="inputWidth" forceSelection="false" id="idProviderType" selectedKey="{globalJSONModel>/providerType}" change="ResourceSelect">
-							                            <core:Item key="Health maintenance organizations" text="Health maintenance organizations" />
-														<core:Item key="Exclusive provider organizations" text="Exclusive provider organizations"/>
-														<core:Item key="Point-of-service Plans" text="Point-of-service Plans"/>
-														<core:Item key="Preferred provider organizations" text="Preferred provider organizations"/>
+													<Select width="auto" class="inputWidth" forceSelection="false" id="idProviderType" selectedKey="{globalJSONModel>/steps/0/providerType}" items="{globalJSONModel>/providerType}">
+							                            <core:Item key="{globalJSONModel>type}" text="{globalJSONModel>type}" />
 													</Select>
-													<Label text="{i18n>clinicname}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<Input width="auto" class="inputWidth" type="Text" value="{globalJSONModel>/clinicName}" placeholder="Enter only text value" id="idClinicName" required="true"/>
+													<Label text="{i18n>providername}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Input width="auto" class="inputWidth" type="Text" value="{globalJSONModel>/steps/0/providerName}" showSuggestion="true" suggestionItems="{globalJSONModel>/providerName}" placeholder="Enter only text value" id="idClinicName" required="true">
+                                                    <suggestionItems><core:Item text="{globalJSONModel>pname}" /></suggestionItems>
+                                                    </Input>
 													<Label text="{i18n>invoice}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<Input width="auto" type="Text" class="inputWidth" value="{globalJSONModel>/invoiceNo}" placeholder="Enter only numeric value" id="idInvoice" required="true"/>
+													<Input width="auto" type="Text" class="inputWidth" value="{globalJSONModel>/steps/0/invoiceNo}" placeholder="Enter only numeric value" id="idInvoice" required="true"/>
 													<Label text="{i18n>claimamount}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<Input width="auto" type="Number" class="inputWidth" value="{globalJSONModel>/claimAmount}" placeholder="Enter the amount" id="idClaimAmount" required="true"/>
+													<Input width="auto" type="Number" class="inputWidth" value="{globalJSONModel>/steps/0/claimAmount}" placeholder="Enter the amount" id="idClaimAmount" required="true"/>
 													
 													
 											
@@ -140,11 +134,11 @@
 											labelSpanL="3" labelSpanM="2" labelSpanS="12" emptySpanXL="0" emptySpanL="0" emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2"
 											columnsM="1">
                                             <Label text="{i18n>diagnosis}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<TextArea width="auto" class="inputWidth" value="{globalJSONModel>/diagnosis}" placeholder="Enter the diagnosis (Max 5)" id="idDiagnosis" required="true"/>
+													<TextArea width="auto" class="inputWidth" value="{globalJSONModel>/steps/0/diagnosis}" placeholder="Enter the diagnosis (Max 5)" id="idDiagnosis" required="true"/>
 													<Label text="{i18n>attachment}" class="wizardlabel sapUiSmallMarginEnd"/>
     												<u:FileUploader buttonText="{i18n>Browse}" change="handleUploadPress" id="idAttachment" name="myFileUpload"/>
                                                     <Label text="{i18n>remarks}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<TextArea width="auto" class="inputWidth" value="{globalJSONModel>/remarks}" placeholder="Enter the Remarks" id="idRemarks" required="false"/>
+													<TextArea width="auto" class="inputWidth" value="{globalJSONModel>/steps/0/remarks}" placeholder="Enter the Remarks" id="idRemarks" required="false"/>
                                     </form:SimpleForm>
                                     <!-- </l:content>
 								</l:Grid> -->
@@ -158,21 +152,21 @@
 											labelSpanL="3" labelSpanM="2" labelSpanS="12" emptySpanXL="0" emptySpanL="0" emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2"
 											columnsM="1">
                                                     <Label text="{i18n>visitdate}"  class="wizardlabel sapUiSmallMarginEnd"/>
-                                                    <DatePicker class="inputWidth" width="auto" id="idVisitDateR" value="{globalJSONModel>/visitDate}" valueFormat="yyyy-MM-dd" editable="false"/>
+                                                    <DatePicker class="inputWidth" width="auto" id="idVisitDateR" value="{globalJSONModel>/steps/0/visitDate}" valueFormat="yyyy-MM-dd" editable="false"/>
                                           			<Label text="{i18n>providertype}" class="wizardlabel sapUiSmallMarginEnd"/>
-												    <Input class="inputWidth" width="auto" type="Text" value="{globalJSONModel>/providerType}" editable="false" id="idProviderTypeR" required="true"/>
-												    <Label text="{i18n>clinicname}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<Input class="inputWidth" width="auto" type="Text" value="{globalJSONModel>/clinicName}" editable="false" id="idClinicNameR" required="true"/>
+												    <Input class="inputWidth" width="auto" type="Text" value="{globalJSONModel>/steps/0/providerType}" editable="false" id="idProviderTypeR" required="true"/>
+												    <Label text="{i18n>providername}" class="wizardlabel sapUiSmallMarginEnd"/>
+													<Input class="inputWidth" width="auto" type="Text" value="{globalJSONModel>/steps/0/providerName}" editable="false" id="idClinicNameR" required="true"/>
 													<Label text="{i18n>invoice}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<Input class="inputWidth" width="auto" type="Text" value="{globalJSONModel>/invoiceNo}" editable="false"  id="idInvoiceR" required="true"/>
+													<Input class="inputWidth" width="auto" type="Text" value="{globalJSONModel>/steps/0/invoiceNo}" editable="false"  id="idInvoiceR" required="true"/>
 													<Label text="{i18n>claimamount}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<Input class="inputWidth" width="auto" type="Number" value="{globalJSONModel>/claimAmount}" editable="false"  id="idClaimAmountR" required="true"/>
+													<Input class="inputWidth" width="auto" type="Number" value="{globalJSONModel>/steps/0/claimAmount}" editable="false"  id="idClaimAmountR" required="true"/>
 													<Label text="{i18n>diagnosis}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<TextArea class="inputWidth" width="auto" editable="false" value="{globalJSONModel>/diagnosis}" id="idDiagnosisR" required="true"/>
+													<TextArea class="inputWidth" width="auto" editable="false" value="{globalJSONModel>/steps/0/diagnosis}" id="idDiagnosisR" required="true"/>
 													<Label text="{i18n>attachment}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<Input class="inputWidth" width="auto" editable="false" value="{globalJSONModel>/attachment}" id="idAttachmentR" name="myFileUpload"/>
+													<Input class="inputWidth" width="auto" editable="false" value="{globalJSONModel>/steps/0/attachment}" id="idAttachmentR" name="myFileUpload"/>
 													<Label text="{i18n>remarks}" class="wizardlabel sapUiSmallMarginEnd"/>
-													<TextArea class="inputWidth" width="auto" editable="false" value="{globalJSONModel>/remarks}" id="idRemarksR" required="false"/>
+													<TextArea class="inputWidth" width="auto" editable="false" value="{globalJSONModel>/steps/0/remarks}" id="idRemarksR" required="false"/>
 													
                                     </form:SimpleForm>
                                     <!-- </l:content>

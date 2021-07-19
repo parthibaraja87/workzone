@@ -10,14 +10,19 @@ sap.ui.define([
         "use strict";
         var globalJSONModel = new JSONModel();
         var gloablObject = {
-            visitDate: "",
-            providerType: "",
-            clinicName: "",
-            invoiceNo: "",
-            claimAmount: "",
-            diagnosis: "",
-            attachment: "",
-            remarks: ""
+            "steps": [{
+                visitDate: "",
+                providerType: "",
+                providerName: "",
+                invoiceNo: "",
+                claimAmount: "",
+                diagnosis: "",
+                attachment: "",
+                remarks: ""
+            }],
+            "employeeList": [{ empno: "1", name: "Denise Wang" }, { empno: "2", name: "Justin Wang" }, { empno: "3", name: "Judy Wang" }],
+            "providerType": [{ pno: "1", type: "Singapore Clinics" }, { pno: "2", type: "Singapore Hospitals" }, { pno: "3", type: "Others" }],
+            "providerName": [{ pno: "1", pname: "AMK FAMILY CLINIC PTE LTD" }, { pno: "2", pname: "FAMILY HEALTH MEDICAL CENTRE PTE LTD" }, { pno: "3", name: "TONG CLINIC & SURGERY" }, { pno: "4", name: "YIO CHU KANG MRT CLINIC PTE LTD" }, { pno: "5", name: "PLUSHEALTH MEDICAL CLINIC & SURGERY" }, { pno: "6", name: "LIVEWELL MEDICAL FAMILY CLINIC" }, { pno: "7", name: "HEALTHIFY MEDICAL FAMILY CLINIC" }, { pno: "8", name: "HEALTHWAY MEDICAL CLINIC (BEDOK)" }, { pno: "9", name: "ALLIANCE CLINIC & PARTNERS PTE LTD" }, { pno: "10", name: "ISLAND GROUP CLINIC BEDOK" }]
         };
         return Controller.extend("com.nhg.ui.controller.Main", {
             onInit: function () {
@@ -26,7 +31,7 @@ sap.ui.define([
                 this.i18nModel = this.getOwnerComponent().getModel("i18n");
             },
             handleUploadPress: function (evt) {
-                gloablObject.attachment = evt.getParameters().newValue;
+                gloablObject.steps[0].attachment = evt.getParameters().newValue;
                 globalJSONModel.setData(gloablObject);
                 this.getView().setModel(globalJSONModel, "globalJSONModel");
             },
