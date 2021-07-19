@@ -22,7 +22,37 @@ sap.ui.define([
             }],
             "employeeList": [{ empno: "1", name: "Denise Wang" }, { empno: "2", name: "Justin Wang" }, { empno: "3", name: "Judy Wang" }],
             "providerType": [{ pno: "1", type: "Singapore Clinics" }, { pno: "2", type: "Singapore Hospitals" }, { pno: "3", type: "Others" }],
-            "providerName": [{ pno: "1", pname: "AMK FAMILY CLINIC PTE LTD" }, { pno: "2", pname: "FAMILY HEALTH MEDICAL CENTRE PTE LTD" }, { pno: "3", name: "TONG CLINIC & SURGERY" }, { pno: "4", name: "YIO CHU KANG MRT CLINIC PTE LTD" }, { pno: "5", name: "PLUSHEALTH MEDICAL CLINIC & SURGERY" }, { pno: "6", name: "LIVEWELL MEDICAL FAMILY CLINIC" }, { pno: "7", name: "HEALTHIFY MEDICAL FAMILY CLINIC" }, { pno: "8", name: "HEALTHWAY MEDICAL CLINIC (BEDOK)" }, { pno: "9", name: "ALLIANCE CLINIC & PARTNERS PTE LTD" }, { pno: "10", name: "ISLAND GROUP CLINIC BEDOK" }]
+            "providerName": [
+                { pno: "1", 
+                  pname: "AMK FAMILY CLINIC PTE LTD" 
+                }, 
+                { pno: "2", 
+                  pname: "FAMILY HEALTH MEDICAL CENTRE PTE LTD" 
+                }, 
+                { pno: "3", 
+                  pname: "TONG CLINIC & SURGERY" 
+                }, 
+                { pno: "4", 
+                  pname: "YIO CHU KANG MRT CLINIC PTE LTD" 
+                }, 
+                { pno: "5", 
+                  pname: "PLUSHEALTH MEDICAL CLINIC & SURGERY" 
+                }, 
+                { pno: "6", 
+                  pname: "LIVEWELL MEDICAL FAMILY CLINIC" 
+                }, 
+                { pno: "7", 
+                  pname: "HEALTHIFY MEDICAL FAMILY CLINIC" 
+                }, 
+                { pno: "8", 
+                  pname: "HEALTHWAY MEDICAL CLINIC (BEDOK)" 
+                }, 
+                { pno: "9", 
+                  pname: "ALLIANCE CLINIC & PARTNERS PTE LTD" 
+                }, 
+                { pno: "10", 
+                  pname: "ISLAND GROUP CLINIC BEDOK" 
+                }]
         };
         return Controller.extend("com.nhg.ui.controller.Main", {
             onInit: function () {
